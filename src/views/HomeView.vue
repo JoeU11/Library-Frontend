@@ -27,13 +27,20 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <div v-for="book in books">
-      Title: {{ book.title }} <br />
-      Author: {{ book.author.name }} <br />
-      Genres: <p v-for="category in book.categories"> {{ category.name }} </p>
+      <p>Title: {{ book.title }}<br />
+        Author: {{ book.author.name }} <br />
+        Genres:
+      <p class="inline" v-for="category, index in book.categories">
+      <p class="inline" v-if="index < book.categories.length - 1">{{ category.name }}, </p>
+      <p class="inline" v-else>{{ category.name }}</p>
+      </p>
+      </p>
     </div>
   </div>
 </template>
 
 <style>
-
+.inline {
+  display: inline;
+}
 </style>
