@@ -21,18 +21,24 @@ export default {
       })
     },
     filterBooks() {
-      return this.books.filter(recipe => {
-        return recipe.title.includes(this.searchTerm);
+      return this.books.filter(book => {
+        var lowerSearchTerm = this.searchTerm.toLowerCase();
+        var lowerBookTitle = book.title.toLowerCase();
+        return lowerBookTitle.includes(lowerSearchTerm);
       })
     },
-    search() {
-      console.log("searching")
-      axios.get(`/books.json?search=${this.searchTerm}`).then(response => {
-        console.log(response.data)
-        this.books = response.data
-      })
+    // search() {
+    //   console.log("searching")
+    //   axios.get(`/books.json?search=${this.searchTerm}`).then(response => {
+    //     console.log(response.data)
+    //     this.books = response.data
+    //   })
 
-    }
+    // }
+
+    // var lowerSearchTerm = this.searchTerm.toLowerCase();
+    //     var lowerBookTitle = this.book.title.toLowerCase();
+
   }
 };
 </script>
@@ -42,7 +48,7 @@ export default {
 
     <div class="Book-Search">
       <input type="text" v-model="searchTerm" />
-      <button v-on:click="search()"> Search </button>
+      <button> Search </button>
     </div>
 
     <div v-for="book in filterBooks()">
