@@ -5,7 +5,8 @@ export default {
   data: function () {
     return {
       message: "Welcome to Vue.js!",
-      books: []
+      books: [],
+      searchTerm: ""
     };
   },
   created: function () {
@@ -18,6 +19,19 @@ export default {
         console.log(response.data)
         this.books = response.data
       })
+    },
+    filterBooks() {
+      return this.books.filter(recipe => {
+        return recipe.title.includes(this.searchTerm);
+      })
+    },
+    search() {
+      console.log("searching")
+      axios.get(`/books.json?search=${this.searchTerm}`).then(response => {
+        console.log(response.data)
+        this.books = response.data
+      })
+
     }
   }
 };
@@ -25,8 +39,13 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="book in books">
+
+    <div class="Book-Search">
+      <input type="text" v-model="searchTerm" />
+      <button v-on:click="search()"> Search </button>
+    </div>
+
+    <div v-for="book in filterBooks()">
       <p>Title: {{ book.title }}<br />
         Author: {{ book.author.name }} <br />
         Genres:
