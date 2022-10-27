@@ -27,18 +27,6 @@ export default {
         return lowerBookTitle.includes(lowerSearchTerm);
       })
     },
-    // search() {
-    //   console.log("searching")
-    //   axios.get(`/books.json?search=${this.searchTerm}`).then(response => {
-    //     console.log(response.data)
-    //     this.books = response.data
-    //   })
-
-    // }
-
-    // var lowerSearchTerm = this.searchTerm.toLowerCase();
-    //     var lowerBookTitle = this.book.title.toLowerCase();
-
   }
 };
 </script>
@@ -47,8 +35,8 @@ export default {
   <div class="home">
 
     <div class="Book-Search">
-      <input type="text" v-model="searchTerm" />
-      <button> Search </button>
+      Search:<input type="text" v-model="searchTerm" />
+
     </div>
 
     <div v-for="book in filterBooks()">
