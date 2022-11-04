@@ -8,6 +8,8 @@ export default {
       books: [],
       searchTerm: "",
       myCart: {},
+      errors: [],
+      showModal: true
 
     };
   },
@@ -40,6 +42,11 @@ export default {
         this.myCart = response.data
         this.$router.push("/cart")
       })
+        .catch((error) => {
+          console.log(error.response);
+          this.errors = error.response;
+          document.querySelector('#book-deatils').showModal();
+        })
     }
   }
 };
@@ -61,10 +68,14 @@ export default {
       <p class="inline" v-for="category, index in book.categories">
       <p class="inline" v-if="index < book.categories.length - 1">{{ category.name }}, </p>
       <p class="inline" v-else>{{ category.name }}</p>
-
       </p>
       </p>
       <button v-on:click="addBookToCart(book.id)">Add to cart</button>
+      <dialog id="book-deatils"> You may only have one copy of this book in your cart
+        <form method="dialog">
+          <button>Close</button>
+        </form>
+      </dialog>
     </div>
   </div>
 </template>
