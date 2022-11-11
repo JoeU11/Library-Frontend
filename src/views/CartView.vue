@@ -34,7 +34,7 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div v-for="item in cartedItems"> {{ item.book.title }}
+    <div v-for="item in cartedItems"> {{ item.title }}
 
       <button v-on:click="removeItem(item.carted_item_id)"> Remove from Cart </button>
     </div>
