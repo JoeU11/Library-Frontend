@@ -5,7 +5,8 @@ export default {
   data: function () {
     return {
       message: "Your Cart",
-      cartedItems: []
+      cartedItems: [],
+      error: ""
     };
   },
   created: function () {
@@ -32,6 +33,10 @@ export default {
       axios.post("/rentals", this.cartedItems).then(response => {
         console.log(response.data)
         this.$router.push("/rented-books")
+      }).catch(error => {
+        console.log(error.response.data)
+        this.error = error.response.data.error
+        document.querySelector("#error").showModal()
       })
     }
   },
@@ -48,6 +53,13 @@ export default {
     <p v-if="cartedItems.length === 0">You don't have any books in your cart</p>
     <button v-else v-on:click="checkout()">Rent All</button>
   </div>
+
+  <dialog id="error">
+    <form method="dialog">
+      {{ error }} <br />
+      <button>OK</button>
+    </form>
+  </dialog>
 </template>
 
 <style>
