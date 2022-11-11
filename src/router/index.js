@@ -4,6 +4,7 @@ import SignupView from "../views/SignupView.vue"
 import LoginView from "../views/LoginView.vue"
 import CartView from "../views/CartView.vue"
 import LogoutView from "../views/LogoutView.vue"
+import RentedBooksView from "../views/RentedBooksView.vue"
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/cart',
     name: 'Cart-index',
     component: CartView
+  },
+  {
+    path: '/rented-books',
+    name: 'RentedBooks',
+    component: RentedBooksView
   },
   {
     path: '/about',
