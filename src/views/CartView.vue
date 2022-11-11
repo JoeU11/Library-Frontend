@@ -4,7 +4,7 @@ import axios from 'axios';
 export default {
   data: function () {
     return {
-      message: "Welcome to Vue.js!",
+      message: "Your Cart",
       cartedItems: []
     };
   },
