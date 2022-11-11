@@ -19,12 +19,12 @@ export default {
         this.cartedItems = response.data
       })
     },
-    removeItem(item) {
+    removeItem(item, index) {
       console.log("removing item")
       console.log(item)
-      axios.delete(`/rented_books/ ${item}.json`).then(response => {
+      axios.delete(`/rented_books/${item.id}`).then(response => {
         console.log(response.data)
-        this.$router.go()
+        this.cartedItems.splice(index, 1)
       })
     }
   },
@@ -34,9 +34,9 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div v-for="item in cartedItems"> {{ item.book.title }}
+    <div v-for="item, index in cartedItems"> {{ item.book.title }}
 
-      <button v-on:click="removeItem(item.carted_item_id)"> Remove from Cart </button>
+      <button v-on:click="removeItem(item, index)"> Remove from Cart </button>
     </div>
   </div>
 </template>
